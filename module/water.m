@@ -40,10 +40,6 @@ classdef water < entity
                 
                 set(self.teammesh, "XData", newPos(1, :), "YData", newPos(2, :), "Color", "green", "LineWidth", 2);
             elseif num == 2
-                newPos = [self.MAT_TEAM(1, :) + self.pos(1)+5;...
-                    self.MAT_TEAM(2, :) + self.pos(2)+5];
-                
-                set(self.teammesh, "XData", newPos(1, :), "YData", newPos(2, :), "Color", "red", "LineWidth", 2);
                self.team = 2;
             end
         end
