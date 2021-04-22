@@ -1,4 +1,4 @@
-classdef water < entity
+classdef water < matlab.mixin.Heterogeneous & handle
     properties(SetAccess = public)
         world;
         material;
@@ -8,6 +8,8 @@ classdef water < entity
         teammesh;
         hitmesh;
         hit;
+        pos;
+        Model;
     end
     properties (Constant)
         MAT_WATER = [0, 60, 60, 0, 0; 
@@ -19,16 +21,14 @@ classdef water < entity
     end
     methods
         function self = water(mat, world, pos, color)
-            self.Type = entity.TYPE_WATER;
-            self.world = world;
             self.material = mat;
             self.pos = pos;
-            self.color = color;
-            self.CollisionHull = 64; 
+            self.color = color; 
             self.team = 0;
             self.teammesh = plot(NaN, NaN, "-w");
             self.hit = false;
             self.hitmesh = plot(NaN, NaN, "-w");
+            self.Model = plot(NaN, NaN, "-w");
             newPos = [self.material(1, :) + self.pos(1);...
                 self.material(2, :) + self.pos(2)];
             set(self.Model, "XData", newPos(1, :), "YData", newPos(2, :), "Color", self.color, "LineWidth", 2);
