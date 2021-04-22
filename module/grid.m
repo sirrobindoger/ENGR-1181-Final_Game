@@ -1,3 +1,0 @@
-classdef grid < handle
-    
-end
