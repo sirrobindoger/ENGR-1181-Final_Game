@@ -1,0 +1,28 @@
+classdef water < entity
+    properties(SetAccess = public)
+        world;
+        material;
+        color;
+        gridPos;
+        team;
+    end
+    properties (Constant)
+        MAT_WATER = [0, 60, 60, 0, 0; 
+                     0, 0, 60, 60, 0]
+    end
+    methods
+        function self = water(mat, world, pos, color)
+            self.Type = entity.TYPE_WATER;
+            self.world = world;
+            self.material = mat;
+            self.pos = pos;
+            self.color = color;
+            self.CollisionHull = 64; 
+            self.team = 0;
+            newPos = [self.material(1, :) + self.pos(1);...
+                self.material(2, :) + self.pos(2)];
+            set(self.Model, "XData", newPos(1, :), "YData", newPos(2, :), "Color", self.color, "LineWidth", 2);
+        end
+        function self = 
+    end
+end
